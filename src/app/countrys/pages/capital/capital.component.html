@@ -1,0 +1,24 @@
+<h1>Por capital</h1>
+
+<hr>
+
+<div class="row">
+    <div class="col">
+        <app-input
+            (onEnter)="buscar($event)"
+            (onDebounce)="autocomplete($event)"
+            placeholder="Por capital"
+        ></app-input>
+    </div>
+</div>
+
+<hr>
+<div class="alert alert-danger" *ngIf="error">
+    No se hallaron resultados
+</div>
+
+<div class="row">
+    <div class="col">
+        <app-table [countrys]="countrys" [error]="error"></app-table>
+    </div>
+</div>

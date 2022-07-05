@@ -1,0 +1,37 @@
+<h1>Por País</h1>
+<hr>
+
+<div class="row">
+    <div class="col">
+        <app-input
+            (onEnter)="buscar($event)"
+            (onDebounce)="autocomplete($event)"
+            placeholder="Por país"
+        ></app-input>
+    </div>
+</div>
+
+    <ul class="list-group" *ngIf="showAutocomplete">
+        <li
+        *ngFor="let item of autocompleteCounties"
+        class="list-group-item list-group-item-action">
+         <a [routerLink]="['/pais', item.cca2]">{{item.name.common}}</a> 
+        </li>
+        <li
+        (click)="searchAutocomplete(query)"
+        class="list-group-item list-group-item-action">
+          Buscar:  {{query}} 
+        </li>
+        
+    </ul>
+
+<hr>
+<div class="alert alert-danger" *ngIf="error">
+    No se hallaron resultados
+</div>
+
+<div class="row">
+    <div class="col">
+        <app-table [countrys]="countrys" [error]="error"></app-table>
+    </div>
+</div>

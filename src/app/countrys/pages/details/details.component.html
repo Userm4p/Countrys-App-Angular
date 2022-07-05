@@ -1,0 +1,52 @@
+<div
+ class="alert alert-info"
+ *ngIf="!country; else divCountry"
+>
+    Loading . . .
+</div>
+
+
+<ng-template #divCountry>
+    <div class="row">
+        <div class="col-12">
+            <h1>País:<small>{{country[0].name.common}}</small></h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-4">
+            <h3>Bandera</h3>
+            <img [src]="country[0].flags.png" alt="flag" class="img-thumbnail">
+        </div>
+        <div class="col">
+            <h3>Info</h3>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <strong>Poblacion</strong> {{country[0].population | number}}
+                </li>
+                <li class="list-group-item">
+                    <strong>Extension numerica</strong> {{country[0].idd.root}}{{country[0].idd.suffixes}}
+                </li>
+                
+            </ul>
+        </div>
+    </div>
+
+    <h3>Detalles del país</h3>
+    <div class="row">
+        <div class="col">
+            <span  class="badge bg-primary mr-1">{{country[0].region}}</span>
+            <span  class="badge bg-primary mr-1">{{country[0].subregion}}</span>
+            <span  class="badge bg-primary mr-1">{{country[0].capital}}</span>
+        </div>
+        
+    </div>
+    <h3>Limites</h3>
+    <div class="row">
+        <div class="col">
+            <span *ngFor="let item of country[0].borders" class="badge bg-primary mr-1">{{item}}</span>
+        </div>
+        
+    </div>
+
+</ng-template>
+
